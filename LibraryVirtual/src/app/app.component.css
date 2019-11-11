@@ -1,0 +1,26 @@
+header #logo{
+	font-family: 'Kaushan Script', cursive;
+	font-size:50px;
+	text-align:left;
+  line-height:60px;
+  padding: 5px;
+}
+
+
+header img {
+  height: 125px;
+  width: 125px;
+}
+
+header #auth{
+	text-align:right;
+  line-height:100px;
+}
+
+#sectionP {
+  min-height: 500px;
+}
+
+footer{
+	padding:20px 10px;
+}
