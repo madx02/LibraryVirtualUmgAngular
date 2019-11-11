@@ -21,8 +21,8 @@
         </a>
         <div class="dropdown-menu">
           <a class="dropdown-item" [routerLink]="['/author']">Autor</a>
-          <a class="dropdown-item" href="#">Categoria</a>
-          <a class="dropdown-item" href="#">Editorial</a>
+          <a class="dropdown-item" [routerLink]="['/category']">Categoria</a>
+          <a class="dropdown-item" [routerLink]="['/editorial']">Editorial</a>
           <a class="dropdown-item" href="#">Libros</a>
         </div>
       </li>
@@ -43,10 +43,7 @@
           Categorias
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Autor</a>
-          <a class="dropdown-item" href="#">Categoria</a>
-          <a class="dropdown-item" href="#">Editorial</a>
-          <a class="dropdown-item" href="#">Libros</a>
+          <a *ngFor="let item of categorys" class="dropdown-item" (click)="getLibro(item)">{{item.name}}</a>
         </div>
       </li>
     </ul>

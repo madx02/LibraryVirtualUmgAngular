@@ -1,26 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Observable, of } from 'rxjs';
 import swal from 'sweetalert2';
 
-import { Author } from '../../model/author';
+import { Editorial } from '../../model/editorial';
+import { EditorialService } from '../../service/editorial.service';
 import { AuthorService } from '../../service/author.service';
 
 @Component({
-  selector: 'app-author-edit',
-  templateUrl: './author-edit.component.html',
-  styleUrls: ['./author-edit.component.css'],
+  selector: 'app-editorial-edit',
+  templateUrl: './editorial-edit.component.html',
+  styleUrls: ['./editorial-edit.component.css'],
   providers: [
+    EditorialService,
     AuthorService
   ]
 })
-export class AuthorEditComponent implements OnInit {
+export class EditorialEditComponent implements OnInit {
+
   private route: ActivatedRoute;
   private router: Router;
   private isEdit: boolean;
 
+  private editorialService: EditorialService;
   private authorService: AuthorService;
 
   private response: any;
@@ -31,11 +35,13 @@ export class AuthorEditComponent implements OnInit {
   constructor(
     route: ActivatedRoute,
     router: Router,
+    editorialService: EditorialService,
     authorService: AuthorService,
     formBuilder: FormBuilder
   ) {
     this.route = route;
     this.router = router;
+    this.editorialService = editorialService;
     this.authorService = authorService;
     this.formBuilder = formBuilder;
   }
@@ -43,31 +49,31 @@ export class AuthorEditComponent implements OnInit {
   ngOnInit() {
     this.isEdit = false;
     this.generalForm = this.formBuilder.group({
-      authorId: null,
+      editorialId: null,
       name: [null, [Validators.required]],
       statusId: 1,
       countryId: [null, [Validators.required]],
       createdUser: 'MK',
     });
     this.getPais();
-    this.getAuthor();
+    this.getEditorial();
   }
 
-  getAuthor() {
+  getEditorial() {
     // tslint:disable-next-line:prefer-const no-string-literal
-    let authorId = this.route.snapshot.params['authorId'];
-    if (authorId !== undefined) {
+    let editorialId = this.route.snapshot.params['editorialId'];
+    if (editorialId !== undefined) {
       this.isEdit = true;
-      this.authorService.get(authorId).subscribe(
+      this.editorialService.get(editorialId).subscribe(
         Response => {
           this.response = Response;
           // tslint:disable-next-line:align
           if (this.response.status === 'OK') {
             // tslint:disable-next-line:prefer-const
-            let author = this.response.data[0];
-            this.generalForm.get('authorId').setValue(author.authorId);
-            this.generalForm.get('name').setValue(author.name);
-            this.generalForm.get('countryId').setValue(author.countryId);
+            let editorial = this.response.data[0];
+            this.generalForm.get('editorialId').setValue(editorial.editorialId);
+            this.generalForm.get('name').setValue(editorial.name);
+            this.generalForm.get('countryId').setValue(editorial.countryId);
           } else {
             swal.fire({ title: Response.status, text: Response.message, type: 'error', confirmButtonText: 'Cerrar' });
           }
@@ -83,7 +89,7 @@ export class AuthorEditComponent implements OnInit {
       return;
     }
     // tslint:disable-next-line:prefer-const
-    let data: Author = this.generalForm.value;
+    let data: Editorial = this.generalForm.value;
     if (this.isEdit) {
       this.update(data);
     } else {
@@ -93,16 +99,17 @@ export class AuthorEditComponent implements OnInit {
 
 
   cancel() {
-    this.router.navigate(['/author']);
+    this.router.navigate(['/editorial']);
   }
 
   update(data) {
-    this.authorService.update(data, data.authorId).subscribe(
+    console.log(data);
+    this.editorialService.update(data, data.editorialId).subscribe(
       Response => {
         this.response = Response;
         if (this.response.status === 'OK') {
           swal.fire({ title: this.response.status, text: this.response.message, type: 'success', confirmButtonText: 'Aceptar' });
-          this.router.navigate(['/author']);
+          this.router.navigate(['/editorial']);
         } else {
           swal.fire({ title: this.response.status, text: this.response.message, type: 'info', confirmButtonText: 'Aceptar' });
         }
@@ -113,12 +120,12 @@ export class AuthorEditComponent implements OnInit {
   }
 
   create(data) {
-    this.authorService.add(data).subscribe(
+    this.editorialService.add(data).subscribe(
       Response => {
         this.response = Response;
         if (this.response.status === 'OK') {
           swal.fire({ title: this.response.status, text: this.response.message, type: 'success', confirmButtonText: 'Aceptar' });
-          this.router.navigate(['/author']);
+          this.router.navigate(['/editorial']);
         } else {
           swal.fire({ title: this.response.status, text: this.response.message, type: 'info', confirmButtonText: 'Aceptar' });
         }
@@ -150,4 +157,5 @@ export class AuthorEditComponent implements OnInit {
     console.log(event);
     console.log(this.generalForm.value.countryId);
   }
+
 }

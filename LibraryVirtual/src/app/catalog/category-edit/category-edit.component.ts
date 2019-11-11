@@ -5,69 +5,66 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import swal from 'sweetalert2';
 
-import { Author } from '../../model/author';
-import { AuthorService } from '../../service/author.service';
+import { Category } from '../../model/category';
+import { CategoryService } from '../../service/category.service';
 
 @Component({
-  selector: 'app-author-edit',
-  templateUrl: './author-edit.component.html',
-  styleUrls: ['./author-edit.component.css'],
+  selector: 'app-category-edit',
+  templateUrl: './category-edit.component.html',
+  styleUrls: ['./category-edit.component.css'],
   providers: [
-    AuthorService
+    CategoryService
   ]
 })
-export class AuthorEditComponent implements OnInit {
+export class CategoryEditComponent implements OnInit {
+
   private route: ActivatedRoute;
   private router: Router;
   private isEdit: boolean;
 
-  private authorService: AuthorService;
+  private categoryService: CategoryService;
 
   private response: any;
   generalForm: FormGroup;
   private formBuilder: FormBuilder;
-  paises: Array<any>;
 
   constructor(
     route: ActivatedRoute,
     router: Router,
-    authorService: AuthorService,
+    categoryService: CategoryService,
     formBuilder: FormBuilder
   ) {
     this.route = route;
     this.router = router;
-    this.authorService = authorService;
+    this.categoryService = categoryService;
     this.formBuilder = formBuilder;
   }
 
   ngOnInit() {
     this.isEdit = false;
     this.generalForm = this.formBuilder.group({
-      authorId: null,
+      categoryId: null,
       name: [null, [Validators.required]],
       statusId: 1,
-      countryId: [null, [Validators.required]],
       createdUser: 'MK',
     });
-    this.getPais();
-    this.getAuthor();
+    this.getCategory();
   }
 
-  getAuthor() {
+  getCategory() {
     // tslint:disable-next-line:prefer-const no-string-literal
-    let authorId = this.route.snapshot.params['authorId'];
-    if (authorId !== undefined) {
+    let categoryId = this.route.snapshot.params['categoryId'];
+    if (categoryId !== undefined) {
       this.isEdit = true;
-      this.authorService.get(authorId).subscribe(
+      this.categoryService.get(categoryId).subscribe(
         Response => {
           this.response = Response;
           // tslint:disable-next-line:align
           if (this.response.status === 'OK') {
             // tslint:disable-next-line:prefer-const
-            let author = this.response.data[0];
-            this.generalForm.get('authorId').setValue(author.authorId);
-            this.generalForm.get('name').setValue(author.name);
-            this.generalForm.get('countryId').setValue(author.countryId);
+            let category = this.response.data[0];
+            this.generalForm.get('categoryId').setValue(category.categoryId);
+            this.generalForm.get('name').setValue(category.name);
           } else {
             swal.fire({ title: Response.status, text: Response.message, type: 'error', confirmButtonText: 'Cerrar' });
           }
@@ -83,7 +80,7 @@ export class AuthorEditComponent implements OnInit {
       return;
     }
     // tslint:disable-next-line:prefer-const
-    let data: Author = this.generalForm.value;
+    let data: Category = this.generalForm.value;
     if (this.isEdit) {
       this.update(data);
     } else {
@@ -93,16 +90,16 @@ export class AuthorEditComponent implements OnInit {
 
 
   cancel() {
-    this.router.navigate(['/author']);
+    this.router.navigate(['/category']);
   }
 
   update(data) {
-    this.authorService.update(data, data.authorId).subscribe(
+    this.categoryService.update(data, data.categoryId).subscribe(
       Response => {
         this.response = Response;
         if (this.response.status === 'OK') {
           swal.fire({ title: this.response.status, text: this.response.message, type: 'success', confirmButtonText: 'Aceptar' });
-          this.router.navigate(['/author']);
+          this.router.navigate(['/category']);
         } else {
           swal.fire({ title: this.response.status, text: this.response.message, type: 'info', confirmButtonText: 'Aceptar' });
         }
@@ -113,12 +110,12 @@ export class AuthorEditComponent implements OnInit {
   }
 
   create(data) {
-    this.authorService.add(data).subscribe(
+    this.categoryService.add(data).subscribe(
       Response => {
         this.response = Response;
         if (this.response.status === 'OK') {
           swal.fire({ title: this.response.status, text: this.response.message, type: 'success', confirmButtonText: 'Aceptar' });
-          this.router.navigate(['/author']);
+          this.router.navigate(['/category']);
         } else {
           swal.fire({ title: this.response.status, text: this.response.message, type: 'info', confirmButtonText: 'Aceptar' });
         }
@@ -128,26 +125,4 @@ export class AuthorEditComponent implements OnInit {
       });
   }
 
-  getPais() {
-    this.authorService.getPais().subscribe(
-      response => {
-        this.paises = response.data;
-        if (!this.paises) {
-          swal.fire({ title: response.status, text: response.message, type: 'success'});
-        }
-      }, error => {
-        swal.fire({
-          title: error.status,
-          text: error.message,
-          type: 'error',
-          confirmButtonText: 'Cerrar'
-          });
-      }
-    );
-  }
-
-  changeSelectedPais(event: any) {
-    console.log(event);
-    console.log(this.generalForm.value.countryId);
-  }
 }
