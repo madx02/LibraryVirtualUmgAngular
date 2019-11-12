@@ -27,7 +27,7 @@
             </tr>
           </tbody>
         </table>
-        <nav aria-label="Page navigation">
+        <nav aria-label="Page navigation" *ngIf="categorys">
             <ul class="pagination">
               <li *ngFor="let i of getArrayFromNumber(categorys.length); let in = index" class="page-item">
                 <a class="page-link" (click)="updateIndex(in)">{{in+1}}</a>

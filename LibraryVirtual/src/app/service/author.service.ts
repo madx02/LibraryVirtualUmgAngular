@@ -27,10 +27,6 @@ export class AuthorService {
     return this.http.get(this.urlBase + 'author/ver/' + id);
   }
 
-  getPais(): Observable<any> {
-    return this.http.get(this.urlBase + 'country/listar');
-  }
-
   add(data: Author) {
     return this.http.post(this.urlBase + 'author/crear', data);
   }

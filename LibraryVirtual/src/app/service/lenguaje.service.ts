@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { Editorial } from '../model/editorial';
+import { Lenguaje } from '../model/lenguaje';
 import { Config } from './config';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EditorialService {
+export class LenguajeService {
 
   private urlBase: string;
   private http: HttpClient;
@@ -21,22 +21,22 @@ export class EditorialService {
    }
 
   getAll(): Observable<any> {
-    return this.http.get(this.urlBase + 'editorial/listar');
+    return this.http.get(this.urlBase + 'lenguaje/listar');
   }
 
   get( id: number ): Observable<any> {
-    return this.http.get(this.urlBase + 'editorial/ver/' + id);
+    return this.http.get(this.urlBase + 'lenguaje/ver/' + id);
   }
 
-  add(data: Editorial) {
-    return this.http.post(this.urlBase + 'editorial/crear', data);
+  add(data: Lenguaje) {
+    return this.http.post(this.urlBase + 'lenguaje/crear', data);
   }
 
-  update(data: Editorial, id: number) {
-    return this.http.put(this.urlBase + 'editorial/editar/' + id, data);
+  update(data: Lenguaje, id: number) {
+    return this.http.put(this.urlBase + 'lenguaje/editar/' + id, data);
   }
 
   delete(id: number)  {
-    return this.http.delete(this.urlBase + 'editorial/borrar/' + id);
+    return this.http.delete(this.urlBase + 'lenguaje/borrar/' + id);
   }
 }

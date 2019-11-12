@@ -8,6 +8,8 @@ import { CategoryComponent } from './catalog/category/category.component';
 import { CategoryEditComponent } from './catalog/category-edit/category-edit.component';
 import { EditorialComponent } from './catalog/editorial/editorial.component';
 import { EditorialEditComponent } from './catalog/editorial-edit/editorial-edit.component';
+import { DocumentComponent } from './catalog/document/document.component';
+import { DocumentEditComponent } from './catalog/document-edit/document-edit.component';
 
 
 const routes: Routes = [
@@ -21,7 +23,10 @@ const routes: Routes = [
   {path: 'category/:categoryId/edit', component: CategoryEditComponent},
   {path: 'editorial', component: EditorialComponent},
   {path: 'add-editorial', component: EditorialEditComponent},
-  {path: 'editorial/:editorialId/edit', component: EditorialEditComponent}
+  {path: 'editorial/:editorialId/edit', component: EditorialEditComponent},
+  {path: 'document', component: DocumentComponent},
+  {path: 'add-document', component: DocumentEditComponent},
+  {path: 'document/:documentId/edit', component: DocumentEditComponent}
 ];
 
 @NgModule({

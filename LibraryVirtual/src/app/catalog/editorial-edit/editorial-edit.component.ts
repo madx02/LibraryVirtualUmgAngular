@@ -8,6 +8,7 @@ import swal from 'sweetalert2';
 import { Editorial } from '../../model/editorial';
 import { EditorialService } from '../../service/editorial.service';
 import { AuthorService } from '../../service/author.service';
+import { CountryService } from '../../service/country.service';
 
 @Component({
   selector: 'app-editorial-edit',
@@ -15,7 +16,8 @@ import { AuthorService } from '../../service/author.service';
   styleUrls: ['./editorial-edit.component.css'],
   providers: [
     EditorialService,
-    AuthorService
+    AuthorService,
+    CountryService
   ]
 })
 export class EditorialEditComponent implements OnInit {
@@ -26,6 +28,7 @@ export class EditorialEditComponent implements OnInit {
 
   private editorialService: EditorialService;
   private authorService: AuthorService;
+  private countryService: CountryService;
 
   private response: any;
   generalForm: FormGroup;
@@ -37,12 +40,14 @@ export class EditorialEditComponent implements OnInit {
     router: Router,
     editorialService: EditorialService,
     authorService: AuthorService,
+    countryService: CountryService,
     formBuilder: FormBuilder
   ) {
     this.route = route;
     this.router = router;
     this.editorialService = editorialService;
     this.authorService = authorService;
+    this.countryService = countryService;
     this.formBuilder = formBuilder;
   }
 
@@ -136,7 +141,7 @@ export class EditorialEditComponent implements OnInit {
   }
 
   getPais() {
-    this.authorService.getPais().subscribe(
+    this.countryService.getAll().subscribe(
       response => {
         this.paises = response.data;
         if (!this.paises) {

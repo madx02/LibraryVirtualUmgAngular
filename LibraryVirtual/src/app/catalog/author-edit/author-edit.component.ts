@@ -7,13 +7,15 @@ import swal from 'sweetalert2';
 
 import { Author } from '../../model/author';
 import { AuthorService } from '../../service/author.service';
+import { CountryService } from '../../service/country.service';
 
 @Component({
   selector: 'app-author-edit',
   templateUrl: './author-edit.component.html',
   styleUrls: ['./author-edit.component.css'],
   providers: [
-    AuthorService
+    AuthorService,
+    CountryService
   ]
 })
 export class AuthorEditComponent implements OnInit {
@@ -22,6 +24,7 @@ export class AuthorEditComponent implements OnInit {
   private isEdit: boolean;
 
   private authorService: AuthorService;
+  private countryService: CountryService;
 
   private response: any;
   generalForm: FormGroup;
@@ -32,11 +35,13 @@ export class AuthorEditComponent implements OnInit {
     route: ActivatedRoute,
     router: Router,
     authorService: AuthorService,
+    countryService: CountryService,
     formBuilder: FormBuilder
   ) {
     this.route = route;
     this.router = router;
     this.authorService = authorService;
+    this.countryService = countryService;
     this.formBuilder = formBuilder;
   }
 
@@ -129,7 +134,7 @@ export class AuthorEditComponent implements OnInit {
   }
 
   getPais() {
-    this.authorService.getPais().subscribe(
+    this.countryService.getAll().subscribe(
       response => {
         this.paises = response.data;
         if (!this.paises) {
