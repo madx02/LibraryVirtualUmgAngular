@@ -11,6 +11,7 @@ export class Document {
   public editorialId: number;
   public lenguajeId: number;
   public state: boolean;
+  public publicationDate: Date;
   public createdOn: Date;
   public createdUser: string;
   public modifiedOn: Date;
