@@ -56,6 +56,10 @@ export class DocumentEditComponent implements OnInit {
   categorys: Array<Category>;
   editorials: Array<Editorial>;
   lenguajes: Array<Lenguaje>;
+  imageSelect: any;
+  pdfSelect: any;
+
+  public imagenDetalle: string;
 
   constructor(
     route: ActivatedRoute,
@@ -87,8 +91,8 @@ export class DocumentEditComponent implements OnInit {
       documentId: null,
       title: [null, [Validators.required]],
       description: [null, [Validators.required]],
-      imagenPath:  [null, [Validators.required]],
-      pdfPath:  [null, [Validators.required]],
+      imagenPath: 'IMAGEN PATH 2',
+      pdfPath: 'PDF PATH 2',
       privated: 0,
       userId: 1,
       categoryId: [null, [Validators.required]],
@@ -122,6 +126,7 @@ export class DocumentEditComponent implements OnInit {
             this.generalForm.get('title').setValue(document.title);
             this.generalForm.get('description').setValue(document.description);
             this.generalForm.get('imagenPath').setValue(document.imagenPath);
+            this.imagenDetalle = '../assets/img/' + document.imagenPath;
             this.generalForm.get('pdfPath').setValue(document.pdfPath);
             this.generalForm.get('categoryId').setValue(document.categoryId);
             this.generalForm.get('authorId').setValue(document.authorId);
@@ -138,11 +143,24 @@ export class DocumentEditComponent implements OnInit {
   }
 
   onSubmit() {
+
     if (this.generalForm.invalid) {
+      console.log('Retorna');
       return;
     }
     // tslint:disable-next-line:prefer-const
     let data: Document = this.generalForm.value;
+
+    // tslint:disable-next-line:curly
+    if (this.imageSelect)
+      data.imagenPath = this.imageSelect;
+
+    // tslint:disable-next-line:curly
+    if (this.pdfSelect)
+      data.pdfPath = this.pdfSelect;
+
+
+    console.log(data);
     if (this.isEdit) {
       this.update(data);
     } else {
@@ -156,7 +174,7 @@ export class DocumentEditComponent implements OnInit {
   }
 
   update(data) {
-    this.authorService.update(data, data.authorId).subscribe(
+    this.documentService.update(data, data.documentId).subscribe(
       Response => {
         this.response = Response;
         if (this.response.status === 'OK') {
@@ -172,7 +190,7 @@ export class DocumentEditComponent implements OnInit {
   }
 
   create(data) {
-    this.authorService.add(data).subscribe(
+    this.documentService.add(data).subscribe(
       Response => {
         this.response = Response;
         if (this.response.status === 'OK') {
@@ -192,7 +210,7 @@ export class DocumentEditComponent implements OnInit {
       response => {
         this.authors = response.data;
         if (!this.authors) {
-          swal.fire({ title: response.status, text: response.message, type: 'success'});
+          swal.fire({ title: response.status, text: response.message, type: 'success' });
         }
       }, error => {
         swal.fire({
@@ -200,7 +218,7 @@ export class DocumentEditComponent implements OnInit {
           text: error.message,
           type: 'error',
           confirmButtonText: 'Cerrar'
-          });
+        });
       }
     );
   }
@@ -210,7 +228,7 @@ export class DocumentEditComponent implements OnInit {
       response => {
         this.categorys = response.data;
         if (!this.categorys) {
-          swal.fire({ title: response.status, text: response.message, type: 'success'});
+          swal.fire({ title: response.status, text: response.message, type: 'success' });
         }
       }, error => {
         swal.fire({
@@ -218,7 +236,7 @@ export class DocumentEditComponent implements OnInit {
           text: error.message,
           type: 'error',
           confirmButtonText: 'Cerrar'
-          });
+        });
       }
     );
   }
@@ -228,7 +246,7 @@ export class DocumentEditComponent implements OnInit {
       response => {
         this.lenguajes = response.data;
         if (!this.lenguajes) {
-          swal.fire({ title: response.status, text: response.message, type: 'success'});
+          swal.fire({ title: response.status, text: response.message, type: 'success' });
         }
       }, error => {
         swal.fire({
@@ -236,7 +254,7 @@ export class DocumentEditComponent implements OnInit {
           text: error.message,
           type: 'error',
           confirmButtonText: 'Cerrar'
-          });
+        });
       }
     );
   }
@@ -246,7 +264,7 @@ export class DocumentEditComponent implements OnInit {
       response => {
         this.editorials = response.data;
         if (!this.editorials) {
-          swal.fire({ title: response.status, text: response.message, type: 'success'});
+          swal.fire({ title: response.status, text: response.message, type: 'success' });
         }
       }, error => {
         swal.fire({
@@ -254,28 +272,37 @@ export class DocumentEditComponent implements OnInit {
           text: error.message,
           type: 'error',
           confirmButtonText: 'Cerrar'
-          });
+        });
       }
     );
   }
 
+  handleUploadImagen(fileInput: any) {
+    // tslint:disable-next-line:prefer-const
+    let file = fileInput.target.files[0];
+    // tslint:disable-next-line:prefer-const
+    let fileName = file.name;
+    this.imageSelect = fileName;
+  }
+
+  handleUploadPdf(fileInput: any) {
+    // tslint:disable-next-line:prefer-const
+    let file = fileInput.target.files[0];
+    // tslint:disable-next-line:prefer-const
+    let fileName = file.name;
+    this.pdfSelect = fileName;
+
+  }
+
   changeSelectedCategory(event: any) {
-    console.log(event);
-    console.log(this.generalForm.value.categoryId);
   }
 
   changeSelectedEditorial(event: any) {
-    console.log(event);
-    console.log(this.generalForm.value.editorialId);
   }
 
   changeSelectedAuthor(event: any) {
-    console.log(event);
-    console.log(this.generalForm.value.authorlId);
   }
 
   changeSelectedLenguage(event: any) {
-    console.log(event);
-    console.log(this.generalForm.value.lenguajeId);
   }
 }
