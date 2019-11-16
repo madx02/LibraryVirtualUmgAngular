@@ -18,7 +18,7 @@ import { CategoryService } from './service/category.service';
 export class AppComponent  implements OnInit {
   private route: ActivatedRoute;
   private router: Router;
-
+  private userval: boolean;
   public categorys: Observable<Category>[];
   private categoryService: CategoryService;
   public title: string;
@@ -32,13 +32,21 @@ export class AppComponent  implements OnInit {
     this.router = router;
     this.categoryService = categoryService;
     this.title = 'Libreria Virtual Umg';
+    this.userval = false;
+
+//    this.url = route._futureSnapshot.routeConfig.path;
+
+
   }
 
   ngOnInit(): void {
     this.getCategorys();
   }
 
+
+
   getCategorys() {
+    console.log(this.route)
     this.categoryService.getAll().subscribe(
       response => {
         this.categorys = response.data;

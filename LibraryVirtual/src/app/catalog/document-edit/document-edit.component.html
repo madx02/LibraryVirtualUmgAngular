@@ -1,4 +1,5 @@
-<div class="container">
+<app-cabeza></app-cabeza>
+<div class="container" style="min-height: 500px;">
   <h2>Libro</h2>
   <form [formGroup]="generalForm" (ngSubmit)="onSubmit()">
     <div class="form-group" *ngIf="imagenDetalle">
@@ -83,3 +84,14 @@
     </div>
     <br>
   </form>
+<<<<<<< HEAD
+=======
+  <form>
+    <div class="form-group">
+      <label for="exampleFormControlFile1">Subir Imagen</label>
+      <input type="file" class="form-control-file"  id="exampleFormControlFile1">
+    </div>
+  </form>
+</div>
+<app-pie></app-pie>
+>>>>>>> 6a7342b21572a3810b6ddd12e3ec9810f329f738

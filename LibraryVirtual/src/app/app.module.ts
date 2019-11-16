@@ -14,6 +14,9 @@ import { EditorialComponent } from './catalog/editorial/editorial.component';
 import { EditorialEditComponent } from './catalog/editorial-edit/editorial-edit.component';
 import { DocumentComponent } from './catalog/document/document.component';
 import { DocumentEditComponent } from './catalog/document-edit/document-edit.component';
+import { LoginComponent } from './catalog/login/login.component';
+import { CabezaComponent } from './catalog/cabeza/cabeza.component';
+import { PieComponent } from './catalog/pie/pie.component';
 
 
 
@@ -29,7 +32,10 @@ import { DocumentEditComponent } from './catalog/document-edit/document-edit.com
     EditorialComponent,
     EditorialEditComponent,
     DocumentComponent,
-    DocumentEditComponent
+    DocumentEditComponent,
+    LoginComponent,
+    CabezaComponent,
+    PieComponent
   ],
   imports: [
     BrowserModule,

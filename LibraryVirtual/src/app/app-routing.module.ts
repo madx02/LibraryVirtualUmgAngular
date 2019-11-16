@@ -10,7 +10,7 @@ import { EditorialComponent } from './catalog/editorial/editorial.component';
 import { EditorialEditComponent } from './catalog/editorial-edit/editorial-edit.component';
 import { DocumentComponent } from './catalog/document/document.component';
 import { DocumentEditComponent } from './catalog/document-edit/document-edit.component';
-
+import { LoginComponent } from './catalog/login/login.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -26,7 +26,8 @@ const routes: Routes = [
   {path: 'editorial/:editorialId/edit', component: EditorialEditComponent},
   {path: 'document', component: DocumentComponent},
   {path: 'add-document', component: DocumentEditComponent},
-  {path: 'document/:documentId/edit', component: DocumentEditComponent}
+  {path: 'document/:documentId/edit', component: DocumentEditComponent},
+  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({
