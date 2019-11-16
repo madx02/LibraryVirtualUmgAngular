@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Report1 } from 'src/app/model/report1';
-import { Report1Service } from 'src/app/service/report1.service';
+import { Report2 } from 'src/app/model/report2';
+import { Report2Service } from 'src/app/service/report2.service';
 
 import swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-report',
-  templateUrl: './report.component.html',
-  styleUrls: ['./report.component.css']
+  selector: 'app-documents',
+  templateUrl: './documents.component.html',
+  styleUrls: ['./documents.component.css']
 })
-export class ReportComponent implements OnInit {
+export class DocumentsComponent implements OnInit {
   private route: ActivatedRoute;
   private router: Router;
 
-  public editoriales: Observable<Report1>[];
+  public editoriales: Observable<Report2>[];
   public titulo: string;
-  private report1Service: Report1Service;
+  private report1Service: Report2Service;
   private response: any;
 
   startIndex = 0;
@@ -25,7 +25,7 @@ export class ReportComponent implements OnInit {
   constructor(
     route: ActivatedRoute,
     router: Router,
-    report1Service: Report1Service
+    report1Service: Report2Service
   ) {
     this.route = route;
     this.router = router;
@@ -64,3 +64,4 @@ export class ReportComponent implements OnInit {
     this.endIndex = this.startIndex + 5;
 }
 }
+

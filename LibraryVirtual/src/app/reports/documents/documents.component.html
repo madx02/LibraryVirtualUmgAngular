@@ -8,13 +8,13 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Nombre Autor</th>
+            <th>Categoria</th>
             <th>Nombre Libro</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let editorial of editoriales | slice:startIndex:endIndex">
-            <td>{{editorial.author}}</td>
+            <td>{{editorial.category}}</td>
 
             <td>
                     {{editorial.documents}}<br>
@@ -33,3 +33,4 @@
   </div>
 </div>
 <app-pie></app-pie>
+
