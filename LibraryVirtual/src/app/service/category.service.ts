@@ -20,7 +20,7 @@ export class CategoryService {
    }
 
   getAll(): Observable<any> {
-    return this.http.get(this.urlBase + 'category/listar');
+    return this.http.get(this.urlBase + 'category/listar/');
   }
 
   get( id: number ): Observable<any> {
