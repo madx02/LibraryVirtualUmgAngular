@@ -1,5 +1,19 @@
 <app-cabeza></app-cabeza>
-<div style="min-height: 500px;">
+<div class="container" style="margin-top: 5px; margin-bottom: 5px; min-height: 500px;">
+    <div class="card-header bg-secondary text-white">
+        {{titulo}}
+    </div>
+    <div class="responsive" *ngFor="let document of documents">
+        <div class="gallery">
+          <a target="_blank" href="assets/img/Logo.png">
+            <img src="{{rutaImagen + document.imagenPath}}" alt="Imagen" width="600" height="400">
+          </a>
+          <div class="desc">{{document.title}}</div>
+        </div>
+      </div>
+
+
+      <div class="clearfix"></div>
 
 </div>
 <app-pie></app-pie>

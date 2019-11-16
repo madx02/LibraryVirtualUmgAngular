@@ -40,13 +40,12 @@ export class AppComponent  implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCategorys();
   }
 
 
 
   getCategorys() {
-    console.log(this.route)
+    console.log(this.route);
     this.categoryService.getAll().subscribe(
       response => {
         this.categorys = response.data;

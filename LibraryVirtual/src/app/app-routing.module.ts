@@ -15,6 +15,7 @@ import { LoginComponent } from './catalog/login/login.component';
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent },
+  {path: 'home/:categoryId', component: HomeComponent },
   {path: 'author', component: AuthorComponent},
   {path: 'add-author', component: AuthorEditComponent},
   {path: 'author/:authorId/edit', component: AuthorEditComponent},
