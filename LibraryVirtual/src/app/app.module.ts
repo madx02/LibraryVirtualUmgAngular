@@ -17,6 +17,7 @@ import { DocumentEditComponent } from './catalog/document-edit/document-edit.com
 import { LoginComponent } from './catalog/login/login.component';
 import { CabezaComponent } from './catalog/cabeza/cabeza.component';
 import { PieComponent } from './catalog/pie/pie.component';
+import { ReportComponent } from './reports/report/report.component';
 
 
 
@@ -35,7 +36,8 @@ import { PieComponent } from './catalog/pie/pie.component';
     DocumentEditComponent,
     LoginComponent,
     CabezaComponent,
-    PieComponent
+    PieComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,

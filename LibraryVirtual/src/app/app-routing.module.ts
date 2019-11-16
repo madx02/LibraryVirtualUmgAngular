@@ -11,6 +11,7 @@ import { EditorialEditComponent } from './catalog/editorial-edit/editorial-edit.
 import { DocumentComponent } from './catalog/document/document.component';
 import { DocumentEditComponent } from './catalog/document-edit/document-edit.component';
 import { LoginComponent } from './catalog/login/login.component';
+import { ReportComponent } from './reports/report/report.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -27,7 +28,8 @@ const routes: Routes = [
   {path: 'document', component: DocumentComponent},
   {path: 'add-document', component: DocumentEditComponent},
   {path: 'document/:documentId/edit', component: DocumentEditComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'report', component: ReportComponent}
 ];
 
 @NgModule({
