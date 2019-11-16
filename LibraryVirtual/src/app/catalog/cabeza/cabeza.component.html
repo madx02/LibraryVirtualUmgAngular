@@ -24,8 +24,8 @@
           Reportes
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" [routerLink]="['/report']" >Libros por Autor</a>
-          <a class="dropdown-item" [routerLink]="['/routePath']" >Libros por Categoria</a>
+          <a class="dropdown-item" href="#">Reporte 1</a>
+          <a class="dropdown-item" href="#">Reporte 2</a>
         </div>
       </li>
 
@@ -42,8 +42,8 @@
 
     <ul class="navbar-nav ml-auto">
       <li>
-      <form class="form-inline mt-2 mt-md-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Buscar">
+      <form #f="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="onSubmit(f)">
+        <input class="form-control mr-sm-2" name="buscar" ngModel #buscar="ngModel"  type="text" placeholder="Buscar" id="buscar">
         <button id="buttonSearch" class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
       </form>
     </li>

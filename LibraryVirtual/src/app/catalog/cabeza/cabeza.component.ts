@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
 import { Observable, of } from 'rxjs';
 import swal from 'sweetalert2';
 
 import { Category } from '../../model/category';
 import { CategoryService } from '../../service/category.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-cabeza',
@@ -57,7 +59,23 @@ export class CabezaComponent implements OnInit {
   }
 
   getLibro(item: Category) {
+    console.log('Filtra por categoria' + item.categoryId);
     this.router.navigate(['/home/' + item.categoryId]);
+  }
+
+  get(id: any) {
+    console.log(id);
+  }
+
+  onSubmit(value: NgForm): void {
+    console.log(value.value.buscar);
+    console.log('entra');
+    if (!value.value.buscar) {
+      this.router.navigate(['/home']);
+    } else {
+      this.router.navigate(['/home/' + value.value.buscar + '/buscar']);
+    }
+
   }
 
 }

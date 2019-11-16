@@ -15,8 +15,10 @@ import { ReportComponent } from './reports/report/report.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'assets/documents/:pdf', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent },
   {path: 'home/:categoryId', component: HomeComponent },
+  {path: 'home/:buscarId/buscar', component: HomeComponent },
   {path: 'author', component: AuthorComponent},
   {path: 'add-author', component: AuthorEditComponent},
   {path: 'author/:authorId/edit', component: AuthorEditComponent},
