@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StorageService } from '../../service/storage.service';
 
 
 import { Observable, of } from 'rxjs';
@@ -23,20 +24,34 @@ export class CabezaComponent implements OnInit {
   public title: string;
   public categorys: Observable<Category>[];
   private categoryService: CategoryService;
+  private storageService: StorageService;
 
   constructor(
     route: ActivatedRoute,
     router: Router,
-    categoryService: CategoryService
+    categoryService: CategoryService,
+    storageService: StorageService,
+
     ) {
     this.route = route;
     this.router = router;
     this.categoryService = categoryService;
     this.title = 'Libreria Virtual Umg';
+    this.storageService = storageService;
+
    }
 
   ngOnInit() {
     this.getCategorys();
+  }
+
+  logout() {
+    this.storageService.logout();
+  }
+
+
+  login() {
+    this.router.navigate(['/login']);
   }
 
   getCategorys() {
@@ -63,6 +78,7 @@ export class CabezaComponent implements OnInit {
     this.router.navigate(['/home/' + item.categoryId]);
   }
 
+<<<<<<< HEAD
   get(id: any) {
     console.log(id);
   }
@@ -77,5 +93,7 @@ export class CabezaComponent implements OnInit {
     }
 
   }
+=======
+>>>>>>> 9cdb3ace32d859581053bd175d6816a96ff16211
 
 }
