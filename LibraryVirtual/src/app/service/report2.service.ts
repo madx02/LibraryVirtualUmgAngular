@@ -7,7 +7,7 @@ import { Config } from './config';
 @Injectable({
   providedIn: 'root'
 })
-export class Report1Service {
+export class Report2Service {
 
   private urlBase: string;
   private http: HttpClient;
@@ -20,7 +20,7 @@ export class Report1Service {
    }
 
   getAll(): Observable<any> {
-    return this.http.get(this.urlBase + 'document/author');
+    return this.http.get(this.urlBase + 'document/category');
   }
 
 

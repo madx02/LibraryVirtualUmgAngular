@@ -40,7 +40,7 @@ export class CabezaComponent implements OnInit {
   }
 
   getCategorys() {
-    console.log(this.route);
+    //console.log(this.route);
     this.categoryService.getAll().subscribe(
       response => {
         this.categorys = response.data;
