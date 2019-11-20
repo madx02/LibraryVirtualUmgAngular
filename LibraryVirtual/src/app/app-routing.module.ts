@@ -18,29 +18,10 @@ import { DocumentsComponent } from './reports/documents/documents.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
-<<<<<<< HEAD
   {path: 'assets/documents/:pdf', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent },
-  {path: 'home/:categoryId', component: HomeComponent },
-  {path: 'home/:buscarId/buscar', component: HomeComponent },
-  {path: 'author', component: AuthorComponent},
-  {path: 'add-author', component: AuthorEditComponent},
-  {path: 'author/:authorId/edit', component: AuthorEditComponent},
-  {path: 'category', component: CategoryComponent},
-  {path: 'add-category', component: CategoryEditComponent},
-  {path: 'category/:categoryId/edit', component: CategoryEditComponent},
-  {path: 'editorial', component: EditorialComponent},
-  {path: 'add-editorial', component: EditorialEditComponent},
-  {path: 'editorial/:editorialId/edit', component: EditorialEditComponent},
-  {path: 'document', component: DocumentComponent},
-  {path: 'add-document', component: DocumentEditComponent},
-  {path: 'document/:documentId/edit', component: DocumentEditComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'report', component: ReportComponent},
-  {path: 'reports', component: DocumentsComponent}
-=======
   {path: 'home', component: HomeComponent},
   {path: 'home/:categoryId', component: HomeComponent, canActivate: [ AuthorizatedGuard ] },
+  {path: 'home/:buscarId/buscar', component: HomeComponent, canActivate: [ AuthorizatedGuard ]},
   {path: 'author', component: AuthorComponent, canActivate: [ AuthorizatedGuard ]},
   {path: 'add-author', component: AuthorEditComponent, canActivate: [ AuthorizatedGuard ]},
   {path: 'author/:authorId/edit', component: AuthorEditComponent, canActivate: [ AuthorizatedGuard ]},
@@ -56,7 +37,6 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'report', component: ReportComponent, canActivate: [ AuthorizatedGuard ]},
   {path: 'reports', component: DocumentsComponent, canActivate: [ AuthorizatedGuard ]}
->>>>>>> 9cdb3ace32d859581053bd175d6816a96ff16211
 ];
 
 @NgModule({

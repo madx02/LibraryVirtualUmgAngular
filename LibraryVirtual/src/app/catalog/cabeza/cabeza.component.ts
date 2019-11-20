@@ -78,7 +78,6 @@ export class CabezaComponent implements OnInit {
     this.router.navigate(['/home/' + item.categoryId]);
   }
 
-<<<<<<< HEAD
   get(id: any) {
     console.log(id);
   }
@@ -93,7 +92,5 @@ export class CabezaComponent implements OnInit {
     }
 
   }
-=======
->>>>>>> 9cdb3ace32d859581053bd175d6816a96ff16211
 
 }

@@ -24,13 +24,10 @@ import { CabezaComponent } from './catalog/cabeza/cabeza.component';
 import { PieComponent } from './catalog/pie/pie.component';
 import { ReportComponent } from './reports/report/report.component';
 import { DocumentsComponent } from './reports/documents/documents.component';
-<<<<<<< HEAD
-=======
 import { AuthorizatedGuard } from './guard/authorizated.guard';
 import { StorageService } from './service/storage.service';
 import { DatePipe } from '@angular/common';
 import { AuthInterceptorService } from './service/auth-interceptor.service';
->>>>>>> 9cdb3ace32d859581053bd175d6816a96ff16211
 
 
 
